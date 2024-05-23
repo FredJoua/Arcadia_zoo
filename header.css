@@ -1,0 +1,31 @@
+/* Couleur de fond par défaut */
+.bg-darkgreen {
+  background-color: #006400; /* Vert foncé */
+}
+
+/* Couleur de fond au survol */
+.bg-darkgreen:hover {
+  background-color: #90ee90; /* Vert clair */
+}
+
+/* Couleur de fond par défaut */
+.bg-darkred {
+  background-color: #e23715; /* Vert foncé */
+}
+
+/* Couleur de fond au survol */
+.bg-darkred:hover {
+  background-color: #e56334; /* Vert clair */
+}
+
+.custom-header-logout {
+  padding-bottom: 15px; /* Ajoutez la valeur de padding souhaitée en pixels */
+}
+
+.container.my-5.mt-4 {
+  margin-top: 550px; /* Ajoutez la valeur de margin-top souhaitée */
+}
+
+.custom-title {
+  margin-top: 100px;
+}

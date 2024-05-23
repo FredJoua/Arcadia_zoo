@@ -1,0 +1,28 @@
+/* Style pour le pied de page */
+footer {
+  margin-top: 0; /* Supprimer la marge supérieure */
+  margin-bottom: 0; /* Supprimer la marge inférieure */
+}
+
+.light-background {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.3
+  ); /* Couleur de fond légère avec une opacité de 30% */
+}
+
+/* Supprimer la marge autour de h5 */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact-info li i {
+  margin-right: 10px; /* Espacement entre l'icône et le texte */
+}
+.carousel-item p {
+  color: white;
+}
