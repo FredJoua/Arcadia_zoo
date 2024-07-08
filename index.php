@@ -1,6 +1,6 @@
 <?php
 session_start(); // Appel à session_start() en début de fichier
-include_once "Header.php"; // Inclusion du header après session_start()
+include_once "Header.php"; // nono Inclusion du header après session_start()
 ?>
 
 <!DOCTYPE html>
