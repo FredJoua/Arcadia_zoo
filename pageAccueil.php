@@ -51,8 +51,6 @@ include "header.php"; // Inclusion du header après session_start()
             </div>
         </div>
 
-
-
         <div class="row justify-content">
             <div class="col-md-8 text-justify">
                 <h1>Qui sommes-nous : </h1>
