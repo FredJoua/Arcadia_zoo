@@ -1,5 +1,5 @@
 <?php
-include_once "dbconn.php";
+include_once "../dbconn.php";
 
 $habitat_id = $_GET['id'];
 
