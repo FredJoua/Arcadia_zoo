@@ -4,11 +4,6 @@ $db_host = "localhost";
 $db_user = "root";
 $db_password = "root";
 
-/*
-    $db_host = "mysql-garageparrot.alwaysdata.net";
-    $db_user = "325453";
-    $db_password = "/Loubinou11*";
-*/
     try {
     $mysqli = new mysqli($db_host,$db_user, $db_password);
 
