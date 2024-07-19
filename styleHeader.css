@@ -1,31 +1,278 @@
-/* Couleur de fond par défaut */
-.bg-darkgreen {
-  background-color: #006400; /* Vert foncé */
+/* CSS Header */
+.navbar-nav .nav-item .btn-link:hover .fas.fa-power-off {
+  color: #1e5b05 !important;
 }
 
-/* Couleur de fond au survol */
-.bg-darkgreen:hover {
-  background-color: #2cac2c; /* Vert clair */
+/* Variables */
+:root {
+  --primary-font: sans-serif;
+  --secondary-font: "Oswald", sans-serif;
 }
 
-/* Couleur de fond par défaut */
-.bg-darkred {
-  background-color: #e23715; /* rouge foncé */
+/* CSS Body */
+body {
+  height: 100vh;
+  width: 100%;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  margin: 0; /* Reset default margin */
+  padding: 0; /* Reset default padding */
 }
 
-/* Couleur de fond au survol */
-.bg-darkred:hover {
-  background-color: #e56334; /* vert clair */
+/* CSS Main */
+main {
+  background: url("img/plage.jpg") no-repeat center center;
+  background-size: cover;
+  box-shadow: inset 0 0 100vw 100vw rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100vh;
+  padding-bottom: 52px; /* Changed shorthand padding to only bottom */
+  display: flex;
+  overflow-x: scroll;
 }
 
-.custom-header-logout {
-  padding-bottom: 15px; /* Ajoutez la valeur de padding souhaitée en pixels */
+/* CSS Card */
+.card__btn {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+  font-family: var(--primary-font); /* Using CSS variable */
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 358px;
+  margin: 8px 10px 100px;
+  opacity: 0.9;
+  padding: 8px;
 }
 
-.container.my-5.mt-4 {
-  margin-top: 550px; /* Ajoutez la valeur de margin-top souhaitée */
+.card__text-sm {
+  color: #fff;
+  font-family: var(--primary-font); /* variable CSS */
+  font-size: 14px;
+  margin: 0;
+  padding: 16px 0 8px;
+  position: relative;
 }
 
-.custom-title {
+.card__text-sm::before {
+  content: "";
+  background: #fff;
+  height: 1px;
+  width: 16px;
+  position: absolute;
+  top: 0;
+}
+
+.card__text-lg {
+  color: #fff;
+  font-family: var(--secondary-font); /* variable CSS */
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: 1.2;
+  width: 100%;
+  margin: 0;
+}
+
+/* Large Card Container */
+.card-lg__container {
+  padding: 0 166px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card-lg__container .card__text-lg {
+  font-size: 50px;
+  font-weight: 400;
+  letter-spacing: 1.4px;
+}
+
+.card-lg__container .card__text-md {
+  color: #fff;
+  font-family: var(--primary-font); /* variable CSS */
+  font-size: 16px;
+  font-weight: 100;
+  padding: 0 32px 0 0;
+  opacity: 0.8;
+}
+
+.card-lg__container .card__text-sm {
+  font-size: 24px;
+}
+
+.card-lg__container .card__text-sm::before {
+  width: 44px;
+  height: 2px;
+}
+
+/* Small Card Container */
+.card-sm__container {
+  height: 232px;
+  margin: 0 -88px 45px 0;
+  display: flex;
+  align-self: flex-end;
+}
+
+.card-sm {
+  background: #ccc;
+  background-size: cover;
+  background-position: center center;
+  box-shadow: inset 0 0 100vw 100vw rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  width: 100px;
+  height: 80%;
+  margin: 0 8px;
+  padding: 4px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.card-sm:hover {
+  margin: -8px 8px 0;
+}
+
+.card-sm .card__text-sm {
+  opacity: 0.8;
+}
+
+/* Hide Scroll Bar */
+.main::-webkit-scrollbar {
+  display: none;
+}
+
+.main {
+  -ms-overflow-style: none;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1260px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 68px 0 32px;
+    height: unset;
+    width: 100%;
+    transform: scale(1);
+  }
+
+  .card-lg__container {
+    margin: 32px 0 0;
+    padding: 0 0 32px;
+  }
+
+  .card-sm__container {
+    align-self: center;
+    margin: 0 -72px 0 0;
+  }
+}
+
+@media screen and (max-width: 795px) {
+  main {
+    padding: 8px 32px 0;
+  }
+
+  .card-sm__container {
+    height: unset;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-sm {
+    width: 80%;
+    height: 200px;
+    margin: 0 0 16px;
+  }
+
+  .card-sm:hover {
+    margin: 8px 0;
+    transform: scale(0.9);
+  }
+}
+
+/*CSS adminPageBoss*/
+
+body {
+  margin: 0%;
+  background-color: rgb(232, 229, 226);
+}
+
+.margin-top-custom {
+  margin: 40px;
+}
+
+#espace_dutitre {
+  margin-top: 40px;
+  padding-top: 40px;
+}
+.navbar {
+  margin-bottom: 100px;
+}
+
+footer {
   margin-top: 100px;
+}
+
+.TextEngagements {
+  background-color: rgb(236, 188, 129);
+  margin-right: "300px";
+}
+#main_container {
+  margin-top: 30px;
+}
+
+/* Classe personnalisée pour ajuster la hauteur des cartes */
+.card {
+  height: 450px;
+}
+
+.custom-container {
+  border-radius: 5px;
+  background-color: #f8f9fa;
+
+  padding: 15px;
+  height: 100%;
+
+  margin-bottom: 20px;
+}
+
+.container align-middle {
+  height: 1000px;
+}
+#signup {
+  margin-top: 200px;
+}
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+
+/* espacement entre les boutons */
+.btn-spacing {
+  margin-top: 20px;
+}
+
+/* ligne de séparation */
+.separator {
+  border-top: 1px solid #ddd;
+  /* Ligne grise séparatrice */
+  margin-top: 20px;
+  /* Espace au-dessus de la ligne de séparation */
 }
