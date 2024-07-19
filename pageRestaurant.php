@@ -99,6 +99,5 @@ include "header.php"; // Inclusion du header après session_start()
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
-
-<?php include "footer.php" ?>
+    <?php include "footer.php" ?>
 </html>
