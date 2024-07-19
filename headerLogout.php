@@ -58,9 +58,9 @@
                                     Habitats
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="crudHabitats/habitatsJungle.php">Jungle</a>
-                                    <a class="dropdown-item" href="crudHabitats/habitatsSavane.php">Savane</a>
-                                    <a class="dropdown-item" href="crudHabitats/habitatsMarais.php">Marais</a>
+                                    <a class="dropdown-item" href="../habitatsJungle.php">Jungle</a>
+                                    <a class="dropdown-item" href="../habitatsSavane.php">Savane</a>
+                                    <a class="dropdown-item" href="../habitatsMarais.php">Marais</a>
                                 </div>
                             </li>
 

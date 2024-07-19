@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 
-    <!-- Bootstrap CSS-->
+    <!-- Bootstrap CSS 19/07-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -20,7 +20,6 @@
     <title>Arcadia Zoo_NAVBAR </title>
 
 </head>
-
 <body>
     <header class="custom-header"> 
         <nav class="navbar navbar-expand-md navbar-orange bg-light shadow-sm fixed-top">
@@ -58,9 +57,9 @@
                                     Habitats
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="crudHabitats/habitatsJungle.php">Jungle</a>
-                                    <a class="dropdown-item" href="savane.php">Savane</a>
-                                    <a class="dropdown-item" href="marais.php">Marais</a>                       
+                                    <a class="dropdown-item" href="../habitatsJungle.php">Jungle</a>
+                                    <a class="dropdown-item" href="habitatsSavane.php">Savane</a>
+                                    <a class="dropdown-item" href="habitatsMarais.php">Marais</a>                       
                                 </div>
                             </li>
 
