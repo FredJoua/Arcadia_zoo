@@ -9,35 +9,35 @@
   --secondary-font: "Oswald", sans-serif;
 }
 
-/* Body Styles */
+/* Body CSS*/
 body {
   height: 100vh;
   width: 100%;
   display: block;
   align-items: center;
   justify-content: center;
-  margin: 0; /* Reset default margin */
-  padding: 0; /* Reset default padding */
+  margin: 0;
+  padding: 0;
 }
 
-/* Main Styles */
+/* Main CSS */
 main {
-  background: url("./img/plage.jpg") no-repeat center center;
+  background: url("img/plage.jpg") no-repeat center center;
   background-size: cover;
   box-shadow: inset 0 0 100vw 100vw rgba(0, 0, 0, 0.3);
   width: 100%;
   height: 100vh;
-  padding-bottom: 52px; /* Changed shorthand padding to only bottom */
+  padding-bottom: 52px;
   display: flex;
   overflow-x: scroll;
 }
 
-/* Card Styles */
+/* Card CSS */
 .card__btn {
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 24px;
-  font-family: var(--primary-font); /* Using CSS variable */
+  font-family: var(--primary-font);
   font-size: 16px;
   text-align: center;
   text-decoration: none;
@@ -50,7 +50,7 @@ main {
 
 .card__text-sm {
   color: #fff;
-  font-family: var(--primary-font); /* Using CSS variable */
+  font-family: var(--primary-font);
   font-size: 14px;
   margin: 0;
   padding: 16px 0 8px;
@@ -68,7 +68,7 @@ main {
 
 .card__text-lg {
   color: #fff;
-  font-family: var(--secondary-font); /* Using CSS variable */
+  font-family: var(--secondary-font);
   font-size: 18px;
   font-weight: 300;
   text-transform: uppercase;
@@ -93,7 +93,7 @@ main {
 
 .card-lg__container .card__text-md {
   color: #fff;
-  font-family: var(--primary-font); /* Using CSS variable */
+  font-family: var(--primary-font);
   font-size: 16px;
   font-weight: 100;
   padding: 0 32px 0 0;
@@ -109,7 +109,7 @@ main {
   height: 2px;
 }
 
-/* Small Card Container */
+/* Petit Card Container */
 .card-sm__container {
   height: 232px;
   margin: 0 -88px 45px 0;
@@ -123,7 +123,7 @@ main {
   background-position: center center;
   box-shadow: inset 0 0 100vw 100vw rgba(0, 0, 0, 0.3);
   border-radius: 8px;
-  width: 135px;
+  width: 100px;
   height: 80%;
   margin: 0 8px;
   padding: 4px 16px;
@@ -142,7 +142,7 @@ main {
   opacity: 0.8;
 }
 
-/* Hide Scroll Bar */
+/* Scroll Bar caché*/
 .main::-webkit-scrollbar {
   display: none;
 }
@@ -204,7 +204,6 @@ main {
 }
 
 /*CSS adminPageBoss*/
-
 body {
   margin: 0%;
   background-color: rgb(232, 229, 226);
@@ -233,7 +232,6 @@ footer {
 #main_container {
   margin-top: 30px;
 }
-
 /* Classe personnalisée pour ajuster la hauteur des cartes */
 .card {
   height: 450px;
@@ -274,5 +272,4 @@ footer {
   border-top: 1px solid #ddd;
   /* Ligne grise séparatrice */
   margin-top: 20px;
-  /* Espace au-dessus de la ligne de séparation */
 }
