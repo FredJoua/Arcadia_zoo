@@ -60,7 +60,7 @@ include "header.php"; // Inclusion du header après session_start()
             </div>
             <div class="col-md-4">
                 <div class="card mb-3 custom-card">
-                    <img src="img/train2.jpg" class="card-img-top custom-img" alt="Photo 2">
+                    <img src="img/Train2.jpg" class="card-img-top custom-img" alt="Photo 2">
                     <div class="card-body">
                         <h5 class="card-title">Rencontre avec les girafes</h5>
                         <p class="card-text">Le territoire des girafes d'Afrique de l'Ouest</p><br>
@@ -69,7 +69,7 @@ include "header.php"; // Inclusion du header après session_start()
             </div>
             <div class="col-md-4">
                 <div class="card mb-3 custom-card">
-                    <img src="img/train3.jpg" class="card-img-top custom-img" alt="Photo 3">
+                    <img src="img/Train3.jpg" class="card-img-top custom-img" alt="Photo 3">
                     <div class="card-body">
                         <h5 class="card-title">L'incontournable rencotre des Rhinocéros</h5>
                         <p class="card-text">En immersion sur le territoire d'une famille de Rhinocéros </p><br>
@@ -103,6 +103,5 @@ include "header.php"; // Inclusion du header après session_start()
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
-
-<?php include "footer.php" ?>
+    <?php include "footer.php" ?>
 </html>
