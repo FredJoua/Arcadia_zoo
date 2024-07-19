@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,10 +27,10 @@
                         <div class="carousel-inner">
                             <?php
                             // Connexion à la base de données
-                            $db_host = "localhost";
-                            $db_name = "db_arcadiaZoo";
-                            $db_user = "root";
-                            $db_password = "root";
+                            $db_host = "mysql-lezooarcadia.alwaysdata.net";
+                            $db_name = "lezooarcadia_import_local";
+                            $db_user = "360105";
+                            $db_password = "PAS12345azerty";
 
                             try {
                                 $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
