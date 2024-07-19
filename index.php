@@ -1,6 +1,6 @@
 <?php
 session_start(); // Appel à session_start() en début de fichier
-include_once "Header.php"; // Inclusion du header après session_start()
+include_once "header.php"; // Inclusion du header après session_start()
 ?>
 
 <!DOCTYPE html>
@@ -22,34 +22,41 @@ include_once "Header.php"; // Inclusion du header après session_start()
       <a href="pageAccueil.php" class="card__btn">Cliquez ici pour plus d'histoire !</a>
     </section>
 
-
     <section class="card-sm__container">
       <!--- START: CARD --->
-      <section class="card-sm" style="background-image:url('./img/TigreBlanc4.jpg');">
-        <p class="card__text-sm">Jungle</p>
-        <h1 class="card__text-lg">Tigre Blanc</h1>
-      </section>
+      <a href="./crudHabitats/habitatsJungle.php">
+          <section class="card-sm" style="background-image:url('./img/TigreBlanc4.jpg');">
+            <p class="card__text-sm">Jungle</p>
+            <h1 class="card__text-lg">Tigre Blanc</h1>
+          </section>
+      </a>
       <!--- END: CARD --->
 
       <!--- START: CARD --->
-      <section class="card-sm" style="background-image: url('./img/Girafe2.jpg'); background-position: center right;">
-        <p class="card__text-sm">Savane</p>
-        <h1 class="card__text-lg">La Girafe</h1>
-      </section>
+      <a href="./crudHabitats/habitatsSavane.php">
+          <section class="card-sm" href="./crudHabitats/habitatsSavane.php" style="background-image: url('./img/Girafe2.jpg'); background-position: center right;">
+            <p class="card__text-sm">Savane</p>
+            <h1 class="card__text-lg">La Girafe</h1>
+          </section>
+      </a>
       <!--- END: CARD --->
 
       <!--- START: CARD --->
-      <section class="card-sm" style="background-image: url('./img/Rhino1.jpg')">
-        <p class="card__text-sm">Marais</p>
-        <h1 class="card__text-lg">Rhinocéros  </h1>
-      </section>
+      <a href="./crudHabitats/habitatsMarais.php">
+          <section class="card-sm" href="./crudHabitats/habitatsMarais.php" style="background-image: url('./img/Rhino1.jpg')">
+            <p class="card__text-sm">Marais</p>
+            <h1 class="card__text-lg">Rhinocéros  </h1>
+          </section>
+      </a>
       <!--- END: CARD --->
 
       <!--- START: CARD --->
-      <section class="card-sm" style="background-image: url('./img/Toucan1.jpg')">
-        <p class="card__text-sm">AUTRES</p>
-        <h1 class="card__text-lg">Toucan</h1>
-      </section>
+      <a href="./crudHabitats/pageTousLesHabitats.php">
+          <section class="card-sm" href="./crudHabitats/habitatsTous.php" style="background-image: url('./img/Toucan1.jpg')">
+            <p class="card__text-sm">Tous</p>
+            <h1 class="card__text-lg">Toucan</h1>
+          </section>
+      </a>
       <!--- END: CARD --->
 
   </main>
