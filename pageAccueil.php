@@ -42,7 +42,7 @@ include "header.php"; // Inclusion du header après session_start()
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
-                <h1>Arcadia et sa Restauration</h1>
+                <h1>Arcadia Zoo</h1>
                 <p> Depuis 1960, Arcadia ZOO s'est imposé comme une référence incontournable 
                     dans le monde de la conservation et de la préservation de la faune. 
                     Niché au cœur de la magnifique forêt de Brocéliande, en Bretagne, 
@@ -78,7 +78,9 @@ include "header.php"; // Inclusion du header après session_start()
                     </p>
 
                 <div class="alert alert-info" role="alert">
-                    <strong>Attention : les pique-niques ne sont pas autorisés sur les tables des points de restauration !</strong>
+                    <div class="text-center">
+                        <strong>"Arcadia Zoo : Où les animaux prennent vie !"</strong>
+                    </div>
                 </div>
             </div>
         </div>
