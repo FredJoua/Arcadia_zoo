@@ -54,7 +54,7 @@ include "header.php"; // Inclusion du header après session_start()
         </div>
         <div class="row">
             <div class="col-md-4">
-                <a href="pageSavane.php" class="text-decoration-none text-dark">
+                <a href="../crudHabitats/habitatsSavane.php" class="text-decoration-none text-dark">
                     <div class="card mb-3 custom-card">
                         <img src="img/savane.jpg" class="card-img-top custom-img" alt="Photo 1">
                         <div class="card-body">
@@ -65,7 +65,7 @@ include "header.php"; // Inclusion du header après session_start()
                 </a>
             </div>
             <div class="col-md-4">
-                <a href="pageJungle.php" class="text-decoration-none text-dark">
+                <a href="../crudHabitats/habitatsJungle.php" class="text-decoration-none text-dark">
                     <div class="card mb-3 custom-card">
                         <img src="img/Jungle1.jpg" class="card-img-top custom-img" alt="Photo 2">
                         <div class="card-body">
@@ -76,7 +76,7 @@ include "header.php"; // Inclusion du header après session_start()
                 </a>
             </div>
             <div class="col-md-4">
-                <a href="pageMarais.php" class="text-decoration-none text-dark">
+                <a href="../crudHabitats/habitatsMarais.php" class="text-decoration-none text-dark">
                     <div class="card mb-3 custom-card">
                         <img src="img/Hipo.jpg" class="card-img-top custom-img" alt="Photo 3">
                         <div class="card-body">
@@ -114,6 +114,5 @@ include "header.php"; // Inclusion du header après session_start()
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
-
-<?php include "footer.php" ?>
+    <?php include "footer.php" ?>
 </html>
