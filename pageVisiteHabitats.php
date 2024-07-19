@@ -105,9 +105,9 @@ include "header.php"; // Inclusion du header après session_start()
                 <p>ous les continents sont représentés ! Vous découvrirez ici des espèces animales 
                     aussi connues que les Ours bruns, les Loups, les imposants Bisons d’Amérique. </p>
 
-                    <div class="alert alert-info" role="alert">
-                        Durée de la visite, environ 3h.
-                    </div>
+                <div class="alert alert-info" role="alert">
+                    Durée de la visite, environ 3h.
+                </div>
             </div>
         </div>
     </div>
