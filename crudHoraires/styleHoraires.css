@@ -6,7 +6,6 @@ body {
   font-weight: 400;
   text-rendering: optimizeLegibility;
 }
-
 div.table-title {
   display: block;
   margin: auto;
@@ -14,7 +13,6 @@ div.table-title {
   padding: 5px;
   width: 100%;
 }
-
 .table-title h3 {
   color: #1f6103;
   font-size: 30px;
@@ -26,7 +24,6 @@ div.table-title {
 }
 
 /*** Table Styles **/
-
 .table-fill {
   background: white;
   border-radius: 3px;
@@ -39,7 +36,6 @@ div.table-title {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;
 }
-
 th {
   color: #e97a02;
   background: #b5b6b9;
@@ -52,11 +48,9 @@ th {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   vertical-align: middle;
 }
-
 th:first-child {
   border-top-left-radius: 3px;
 }
-
 th:last-child {
   border-top-right-radius: 3px;
   border-right: none;
