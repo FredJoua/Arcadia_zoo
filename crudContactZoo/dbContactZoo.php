@@ -9,7 +9,6 @@
 
 <body>
     <?php
-
     // Informations pour se connecter à la base de données
     $db_host = "localhost";
     $db_name = "db_arcadiaZoo";
