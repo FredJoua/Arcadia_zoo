@@ -18,11 +18,19 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styleFooter.css">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            padding-top: 100px; /* Ajustez cette valeur selon vos besoins */
+        }
+    </style>
+
 </head>
 <body>
     <header>
         <?php
-        include '../headerLogout.php';
+        include '../header.php';
         ?>
     </header>
 
@@ -52,6 +60,7 @@
         </div>
     </section>
 
-    <?php include "../footer.php" ?>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
+    <?php include "../footer.php" ?>
 </html>
