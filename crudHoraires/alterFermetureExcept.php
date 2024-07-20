@@ -10,4 +10,3 @@ try {
     echo "Erreur lors de la modification de la table 'horaires' : " . $e->getMessage();
 }
 ?>
-
