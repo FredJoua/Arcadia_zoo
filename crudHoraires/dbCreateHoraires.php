@@ -9,6 +9,7 @@ try {
         ouverture TIME NOT NULL,
         fermeture TIME NOT NULL
     )";
+    
     $conn->exec($createTable);
     echo "La table 'horaires' a été créée avec succès.";
 } catch (PDOException $e) {
