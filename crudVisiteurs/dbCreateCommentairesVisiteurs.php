@@ -12,7 +12,7 @@
 
     // Informations pour se connecter à la base de données
     $db_host = "localhost";
-    $db_name = "db_arcadiaZoo";
+    $db_name = "db_arcadiazoo";
     $db_user = "root";
     $db_password = "root";
 
