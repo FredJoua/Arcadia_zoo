@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once "../dbconn.php";
-include_once "../headerLogout.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pseudo = $_SESSION['pseudo'];
