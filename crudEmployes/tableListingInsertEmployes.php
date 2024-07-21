@@ -2,9 +2,8 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
 include_once ("../dbconn.php");
-include_once ("../headerLogout.php");
+// include_once ("../headerLogout.php");
 $nom = "";
 $prenom = "";
 $email = "";
