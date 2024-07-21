@@ -112,7 +112,7 @@
         .container form {
             margin-bottom: 150px; /* Ajoutez un espace de 50px entre le formulaire et le footer */
         }
-        
+
     </style>
 </head>
 <body>
@@ -191,7 +191,7 @@
                     
                     <div class="mt-3">
                         <!-- Lien de redirection après succès -->
-                        <a href="../index.php" class="btn btn-secondary">Retour à la page d'accueil</a>
+                        <a href="adminPageBoss.php" class="btn btn-outline-secondary">Retour page Admin Boss</a>
                     </form>
                 </div>
             </div>
