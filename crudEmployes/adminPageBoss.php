@@ -11,7 +11,7 @@
     <!-- Custom CSS -->
     <style>
         body {
-            padding-top: 85px; 
+            padding-top: 100px; 
         }
 
     </style>
@@ -66,12 +66,12 @@
                     <div class="center-content">
                         <h3 class="card-title">Les Habitats</h3><br>
                         <div>
-                            <a class="btn btn-outline-warning" href="savane.php" style="margin-right: 30px;">Savane</a>
-                            <a class="btn btn-outline-warning" href="jungle.php">Jungle</a>
+                            <a class="btn btn-outline-warning" href="../crudHabitats/habitatsSavane.php" style="margin-right: 30px;">Savane</a>
+                            <a class="btn btn-outline-warning" href="../crudHabitats/habitatsJungle.php">Jungle</a>
                         </div>
                         <div style="margin-top: 30px;">
-                            <a class="btn btn-outline-warning" href="marais.php" style="margin-right: 30px;">Marais</a>
-                            <a class="btn btn-outline-warning" href="autreHabitats.php">Autres</a>
+                            <a class="btn btn-outline-warning" href="../crudHabitats/habitatsMarais.php" style="margin-right: 30px;">Marais</a>
+                            <a class="btn btn-outline-warning" href="../crudHabitats/pageTousLesHabitats.php">Tous</a>
                         </div>
                     </div>
 
