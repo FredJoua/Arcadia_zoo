@@ -10,7 +10,7 @@
 <body>
     <?php
 
-    // Informations pour se connecter à la base de données
+    // Informations pour se connecter à la db local
     $db_host = "localhost";
     $db_name = "db_arcadiaZoo";
     $db_user = "root";
@@ -33,7 +33,7 @@
             prenom VARCHAR(50) NOT NULL,
             email VARCHAR(100) NOT NULL UNIQUE,
             motdepasse VARCHAR(100) NOT NULL UNIQUE,
-            role_profession VARCHAR(50) NOT NULL, -- Modifier le type de cette colonne
+            role_profession VARCHAR(50) NOT NULL, 
             code_profession TINYINT(1) NOT NULL DEFAULT 0,
             date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             miseajour_le DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
