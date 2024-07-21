@@ -25,9 +25,9 @@ try {
     $nom = "Pari";
     $prenom = "José";
     $email = "pari.jose@arcadiazoo.com";
-    $motdepasse = "motdepasse"; // Choisir un mot de passe par défaut
+    $motdepasse = "motdepasse"; // mot de passe attribué à José
     $role_profession = "Directeur";
-    $code_profession = 777;
+    $code_profession = 777; // code statut manager
 
     // Préparation de la requête
     $query = $conn->prepare($insertEmploye);
