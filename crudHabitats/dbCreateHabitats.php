@@ -28,7 +28,7 @@
 
     try {
         // Créer la table Habitats si elle n'existe pas déjà
-        $createTableHabitats = "CREATE TABLE IF NOT EXISTS Habitats (
+        $createTableHabitats = "CREATE TABLE IF NOT EXISTS habitats (
             id_habitat INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             habitat VARCHAR(50) NOT NULL,
             description_habitat VARCHAR(255) NOT NULL DEFAULT 'Aucune description',
@@ -53,7 +53,7 @@
         id_image INT AUTO_INCREMENT PRIMARY KEY,
         habitat_id INT UNSIGNED NOT NULL,
         image LONGBLOB NOT NULL,
-        FOREIGN KEY (habitat_id) REFERENCES Habitats(id_habitat) ON DELETE CASCADE ON UPDATE CASCADE
+        FOREIGN KEY (habitat_id) REFERENCES habitats(id_habitat) ON DELETE CASCADE ON UPDATE CASCADE
     )";
 
         $conn->exec($createTableImage);
