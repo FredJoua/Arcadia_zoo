@@ -5,17 +5,17 @@
 
 /* Couleur de fond au survol */
 .bg-darkgreen:hover {
-  background-color: #3ba23b; /* Vert clair */
+  background-color: #5dc05d; /* Vert clair */
 }
 
 /* Couleur de fond par défaut */
 .bg-darkred {
-  background-color: #e23715; /* Vert foncé */
+  background-color: #e23715; /* Rouge foncé */
 }
 
 /* Couleur de fond au survol */
 .bg-darkred:hover {
-  background-color: #e56334; /* Vert clair */
+  background-color: #e56334; /* Rouge clair */
 }
 
 .custom-header-logout {
@@ -28,4 +28,29 @@
 
 .custom-title {
   margin-top: 100px;
+}
+
+/* Effet d'atténuation (opacité) sur les éléments du menu lors du survol */
+.nav-link {
+  transition: all 0.3s ease; /* Ajout d'une transition pour l'effet en douceur */
+  position: relative; /* Nécessaire pour l'ajout du fond opaque */
+  z-index: 1;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Couleur noire avec opacité */
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Ajout d'une transition pour l'effet en douceur */
+}
+
+.nav-link:hover::before {
+  opacity: 1; /* Affiche le fond opaque lors du survol */
+  border-radius: 4px; /* Ajoute des coins arrondis */
 }
