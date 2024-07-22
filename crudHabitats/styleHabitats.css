@@ -1,0 +1,63 @@
+.habitats-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.habitat-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 300px;
+  cursor: pointer;
+  transition: transform 0.3s;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.habitat-card:hover {
+  transform: scale(1.05);
+}
+
+.habitat-card img {
+  width: 100%;
+  height: auto;
+}
+
+.habitat-card h2 {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.habitat-card p {
+  text-align: center;
+}
+
+.habitat-detail {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.habitat-detail img {
+  width: 100%;
+  height: auto;
+}
+
+.animal-info {
+  margin-top: 10px;
+}
+
+.animal-info img {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.animal-info p {
+  margin: 5px 0;
+}
