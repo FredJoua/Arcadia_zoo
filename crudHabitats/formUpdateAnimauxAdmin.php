@@ -1,22 +1,23 @@
 <?php
 include_once("../dbconn.php");
 
-$habitat = $description_habitat = $img = $prenom_animal = $race = "";
+$habitat = $description_habitat = $prenom_animal = $race = "";
 $errorMessage = $successMessage = "";
-$photos = null;
+$photos = [];
 
+// Récupérer les données de l'habitat et les images existantes en utilisant la méthode GET
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    // Method GET pour montrer les données de l'habitat
     if (!isset($_GET["id_habitat"])) {
         header("location:tableListingHabitats.php");
         exit;
     }
 
-    $id = $_GET["id_habitat"];
-    // Read la ligne de l'habitat sélectionné dans la bd
+    $id_habitat = $_GET["id_habitat"];
+
+    // Lire les données de l'habitat
     $sql = "SELECT * FROM habitats WHERE id_habitat=:id";
     $query = $conn->prepare($sql);
-    $query->bindParam(':id', $id, PDO::PARAM_INT);
+    $query->bindParam(':id', $id_habitat, PDO::PARAM_INT);
     $query->execute();
     $row = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -25,43 +26,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         exit;
     }
 
-    $id_habitat = $row['id_habitat'];
     $habitat = $row['habitat'];
     $description_habitat = $row['description_habitat'];
     $prenom_animal = $row['prenom_animal'];
     $race = $row['race'];
 
-    // Gestion des fichiers d'image
-    $uploadedImages = [];
-    $targetDir = "uploads/";
-    if (isset($_FILES['img'])) {
-        foreach ($_FILES['img']['name'] as $key => $image) {
-            $targetFile = $targetDir . basename($_FILES['img']['name'][$key]);
-            if (move_uploaded_file($_FILES['img']['tmp_name'][$key], $targetFile)) {
-                $uploadedImages[] = $targetFile;
-            }
-        }
-    }
+    // Lire les images associées à l'habitat
+    $sql = "SELECT image FROM habitat_image WHERE habitat_id=:id";
+    $query = $conn->prepare($sql);
+    $query->bindParam(':id', $id_habitat, PDO::PARAM_INT);
+    $query->execute();
+    $images = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    // Convertir le tableau des chemins d'images en chaîne séparée par des virgules
-    $img = implode(',', $uploadedImages);
-    
-    // Convertir l'image en base64 pour l'afficher dans le formulaire
-    if ($row['img']) {
-        $photos = "data:image/jpeg;base64," . base64_encode($row['img']);
+    // Convertir les images en base64 pour les afficher dans le formulaire
+    foreach ($images as $image) {
+        $photos[] = "data:image/jpeg;base64," . base64_encode($image['image']);
     }
 } else {
-    // Method POST pour apporter des modifications
+    // Gérer les mises à jour via la méthode POST
     $id_habitat = $_POST['id_habitat'];
     $habitat = $_POST['habitat'];
     $description_habitat = $_POST['description_habitat'];
     $prenom_animal = $_POST['prenom_animal'];
     $race = $_POST['race'];
 
-    // Gestion de l'upload d'image
-    $img = null;
-    if (isset($_FILES['img']) && $_FILES['img']['error'] == UPLOAD_ERR_OK) {
-        $img = file_get_contents($_FILES['img']['tmp_name']);
+    // Gestion des nouvelles images uploadées
+    $newImages = [];
+    if (isset($_FILES['img'])) {
+        foreach ($_FILES['img']['tmp_name'] as $key => $tmp_name) {
+            if ($_FILES['img']['error'][$key] == UPLOAD_ERR_OK) {
+                $newImages[] = file_get_contents($tmp_name);
+            }
+        }
     }
 
     do {
@@ -70,23 +66,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             break;
         }
 
-        $sql = "UPDATE habitats SET habitat=:habitat, description_habitat=:description_habitat, prenom_animal=:prenom_animal, race=:race";
-        if ($img !== null) {
-            $sql .= ", img=:img";
-        }
-        $sql .= " WHERE id_habitat = :id_habitat";
-
+        // Mettre à jour les informations de l'habitat
+        $sql = "UPDATE habitats SET habitat=:habitat, description_habitat=:description_habitat, prenom_animal=:prenom_animal, race=:race WHERE id_habitat = :id_habitat";
         $query = $conn->prepare($sql);
         $query->bindParam(':id_habitat', $id_habitat, PDO::PARAM_INT);
         $query->bindParam(':habitat', $habitat, PDO::PARAM_STR);
         $query->bindParam(':description_habitat', $description_habitat, PDO::PARAM_STR);
         $query->bindParam(':prenom_animal', $prenom_animal, PDO::PARAM_STR);
         $query->bindParam(':race', $race, PDO::PARAM_STR);
-        if ($img !== null) {
-            $query->bindParam(':img', $img, PDO::PARAM_LOB);
-        }
 
         if ($query->execute()) {
+            // Supprimer les anciennes images (si nécessaire)
+            $sql = "DELETE FROM habitat_image WHERE habitat_id=:id_habitat";
+            $query = $conn->prepare($sql);
+            $query->bindParam(':id_habitat', $id_habitat, PDO::PARAM_INT);
+            $query->execute();
+
+            // Insérer les nouvelles images
+            foreach ($newImages as $image) {
+                $sql = "INSERT INTO habitat_image (habitat_id, image) VALUES (:habitat_id, :image)";
+                $query = $conn->prepare($sql);
+                $query->bindParam(':habitat_id', $id_habitat, PDO::PARAM_INT);
+                $query->bindParam(':image', $image, PDO::PARAM_LOB);
+                $query->execute();
+            }
+
             $successMessage = "Données vétérinaire modifiée avec succès";
             header("location:tableListingHabitats.php");
             exit();
@@ -104,18 +108,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier habitat</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+    <!-- Bootstrap links -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css">
+    <!-- Font Awesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="header.css">
     <style>
         .readonly {
             background-color: #e9ecef; /* Couleur de fond grise */
             cursor: not-allowed; /* Curseur non autorisé */
         }
+        body {
+            padding-top: 75px; /* Ajustez cette valeur selon vos besoins */
+        }
+        .container form {
+            margin-bottom: 150px; /* Ajoutez un espace de 50px entre le formulaire et le footer */
+        }
     </style>
 
 </head>
 <body>
+    <header>
+        <?php include_once '../headerLogout.php'; ?>
+    </header>
+ 
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-5 mt-3">
@@ -128,9 +146,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <input type="hidden" name="id_habitat" value="<?php echo htmlspecialchars($id_habitat); ?>">
 
                     <div class="mb-3">
-                        <?php if ($photos): ?>
-                            <img src="<?php echo $photos; ?>" alt="Photo de l'habitat" class="img-thumbnail">
-                        <?php endif; ?>
+                        <?php foreach ($photos as $photo): ?>
+                            <img src="<?php echo $photo; ?>" alt="Photo de l'habitat" class="img-thumbnail mb-2">
+                        <?php endforeach; ?>
                         <input class="form-control" type="file" id="img" name="img[]" multiple>
                     </div>
                     <div class="mb-3">
@@ -169,16 +187,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <a href="tableListingHabitats.php" class="btn btn-outline-danger">Annuler</a>
                         </div>
                     </div>
+                    
+                    <div class="mt-3">
+                        <!-- Lien de redirection vers la page d'accueil à tout moment -->
+                        <a href="../index.php" class="btn btn-secondary">Retour à la page d'accueil</a>
+                    </div>
                 </form>
-
-                <div class="mt-3">
-                    <!-- Lien de redirection vers la page d'accueil à tout moment -->
-                    <a href="../index.php" class="btn btn-secondary">Retour à la page d'accueil</a>
-                </div>
             </div>
         </div>
     </div>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap js link --> 
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/locale/bootstrap-table-fr-FR.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
 </body>
+    <?php include_once '../footer.php'; ?>
 </html>
