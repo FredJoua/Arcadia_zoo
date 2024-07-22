@@ -1,20 +1,20 @@
 <?php
 include_once("../dbconn.php");
 
-// Requête pour récupérer les animaux appartenant à l'habitat "Savane" avec une seule image par animal
-$sql = "SELECT h.id_habitat, h.prenom_animal, hi.image
-        FROM Habitats h
-        LEFT JOIN (
-            SELECT habitat_id, MIN(id_image) AS id_image
-            FROM habitat_image
-            GROUP BY habitat_id
-        ) AS hi_grouped ON h.id_habitat = hi_grouped.habitat_id
-        LEFT JOIN habitat_image hi ON hi_grouped.id_image = hi.id_image
-        WHERE h.habitat = 'Savane'";
+    // Requête pour récupérer les animaux appartenant à l'habitat "Savane" avec une seule image par animal
+    $sql = "SELECT h.id_habitat, h.prenom_animal, hi.image
+            FROM habitats h
+            LEFT JOIN (
+                SELECT habitat_id, MIN(id_image) AS id_image
+                FROM habitat_image
+                GROUP BY habitat_id
+            ) AS hi_grouped ON h.id_habitat = hi_grouped.habitat_id
+            LEFT JOIN habitat_image hi ON hi_grouped.id_image = hi.id_image
+            WHERE h.habitat = 'Savane'";
 
-$query = $conn->prepare($sql);
-$query->execute();
-$habitats = $query->fetchAll(PDO::FETCH_ASSOC);
+    $query = $conn->prepare($sql);
+    $query->execute();
+    $habitats = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,13 +43,15 @@ $habitats = $query->fetchAll(PDO::FETCH_ASSOC);
         .btn-group {
             margin-top: auto;
         }
+        .info-text {
+            margin-left: 5px;
+            padding: 3px;
+        }
     </style>
 </head>
 <body>
     <header class="bg-primary text-white text-center py-3">
-        <?php
-        include_once "../header.php"; // Inclusion du header 
-        ?>
+        <?php include_once "../header.php"; // Inclusion du header ?>
     </header>
 
     <div class="container-fluid p-0">
@@ -62,26 +64,38 @@ $habitats = $query->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="container mt-5 mb-5">
         <div class="row">
-            <?php foreach ($habitats as $habitat): ?>
-            <div class="col-md-4">
-                <div class="card border-0 rounded-0 shadow card-custom">
-                    <?php if (!empty($habitat['image'])): ?>
-                        <img class="card-img-top rounded-0" src="data:image/jpeg;base64,<?php echo base64_encode($habitat['image']); ?>" alt="Image de l'habitat">
-                    <?php else: ?>
-                        <p>Image non disponible</p>
-                    <?php endif; ?>
-                    <div class="card-body mt-3 mb-3">
-                        <h4 class="card-title"><?php echo htmlspecialchars($habitat['prenom_animal']); ?></h4>
-                        <div class="btn-group">
-                            <a href="pageDetailHabitats.php?id=<?php echo $habitat['id_habitat']; ?>" class="btn btn-sm btn-outline-secondary">Voir Détail</a>
-                        </div>
-                    </div>
+            <div class="col-md-3">
+                <div class="info-text">
+                    <h3>Bienvenue dans la Savane !</h3>
+                    <p>Explorez la savane africaine et découvrez ses incroyables habitants : lions majestueux, éléphants imposants, girafes gracieuses et bien d'autres. Notre espace "Habitats Savane" reproduit fidèlement cet écosystème fascinant, vous offrant une expérience immersive unique.</p>
+                    <p>Apprenez-en davantage sur la vie sauvage et les efforts de conservation pour protéger ces espèces emblématiques. Merci de soutenir la biodiversité en visitant notre zoo. Bonne visite !</p>
                 </div>
             </div>
-            <?php endforeach; ?>
+            <div class="col-md-9">
+                <div class="row">
+                    <?php foreach ($habitats as $habitat): ?>
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-0 rounded-0 shadow card-custom">
+                            <?php if (!empty($habitat['image'])): ?>
+                                <img class="card-img-top rounded-0" src="data:image/jpeg;base64,<?php echo base64_encode($habitat['image']); ?>" alt="Image de l'habitat">
+                            <?php else: ?>
+                                <p>Image non disponible</p>
+                            <?php endif; ?>
+                            <div class="card-body mt-3 mb-3">
+                                <h4 class="card-title"><?php echo htmlspecialchars($habitat['prenom_animal']); ?></h4>
+                                <div class="btn-group">
+                                    <a href="pageDetailHabitats.php?id=<?php echo $habitat['id_habitat']; ?>" class="btn btn-sm btn-outline-secondary">Voir Détail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <?php include "../footer.php"; ?> 
 </body>
+    <?php include "../footer.php"; ?> 
 </html>
