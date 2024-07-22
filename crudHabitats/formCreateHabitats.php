@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once("../dbconn.php");
-include_once "../headerLogout.php";
 
 $habitat = $description_habitat = $img = $prenom_animal = $race = $etat_sante = $detail_sante = $nourriture = $grammage = $date_visite = $date_repas_pris = $heure_repas_pris = "";
 $errorMessage = $successMessage = "";

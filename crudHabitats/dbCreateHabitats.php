@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Db Habitats</title>
 </head>
+
 <body>
     <?php
 
@@ -25,7 +27,8 @@
     }
 
     try {
-        $createTable = "CREATE TABLE Habitats (
+        // Créer la table Habitats si elle n'existe pas déjà
+        $createTableHabitats = "CREATE TABLE IF NOT EXISTS Habitats (
             id_habitat INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             habitat VARCHAR(50) NOT NULL,
             description_habitat VARCHAR(255) NOT NULL DEFAULT 'Aucune description',
@@ -42,13 +45,25 @@
             miseajour_le DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )";
 
-        $conn->exec($createTable);
-        echo "La table habitats a été créée avec succès.";
+        $conn->exec($createTableHabitats);
+        echo "La table Habitats a été créée avec succès.";
+
+        // Créer la table habitat_image
+        $createTableImage = "CREATE TABLE IF NOT EXISTS habitat_image (
+        id_image INT AUTO_INCREMENT PRIMARY KEY,
+        habitat_id INT UNSIGNED NOT NULL,
+        image LONGBLOB NOT NULL,
+        FOREIGN KEY (habitat_id) REFERENCES Habitats(id_habitat) ON DELETE CASCADE ON UPDATE CASCADE
+    )";
+
+        $conn->exec($createTableImage);
+        echo "La table habitat_image a été créée avec succès.";
     } catch (PDOException $e) {
-        echo "Erreur lors de la création de la table habitats : " . $e->getMessage();
+        echo "Erreur lors de la création des tables : " . $e->getMessage();
     }
 
     $conn = null;
     ?>
 </body>
+
 </html>
