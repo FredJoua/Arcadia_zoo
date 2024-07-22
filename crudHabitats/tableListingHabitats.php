@@ -1,12 +1,38 @@
 <?php
 include_once("../dbconn.php");
-// include_once("../headerLogout.php");
 
-$sql = "SELECT * FROM habitats";
+$sql = "SELECT h.*, hi.image 
+        FROM habitats h 
+        LEFT JOIN habitat_image hi ON h.id_habitat = hi.habitat_id";
 $result = $conn->query($sql);
 
 if (!$result){
     die("Erreur de données");
+}
+
+$habitats = [];
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    $id_habitat = $row['id_habitat'];
+    if (!isset($habitats[$id_habitat])) {
+        $habitats[$id_habitat] = [
+            'id_habitat' => $row['id_habitat'],
+            'habitat' => $row['habitat'],
+            'description_habitat' => $row['description_habitat'],
+            'prenom_animal' => $row['prenom_animal'],
+            'race' => $row['race'],
+            'etat_sante' => $row['etat_sante'],
+            'detail_sante' => $row['detail_sante'],
+            'date_visite' => $row['date_visite'],
+            'nourriture' => $row['nourriture'],
+            'grammage' => $row['grammage'],
+            'date_repas_pris' => $row['date_repas_pris'],
+            'heure_repas_pris' => $row['heure_repas_pris'],
+            'images' => []
+        ];
+    }
+    if ($row['image']) {
+        $habitats[$id_habitat]['images'][] = $row['image'];
+    }
 }
 ?>
 
@@ -32,9 +58,17 @@ if (!$result){
         .centered-header {
             text-align: center;
         }
+        body {
+            padding-top: 75px; /* Ajustez cette valeur selon vos besoins */
+        }
+
     </style>
 </head>
 <body>
+    <header>
+        <?php include_once '../headerLogout.php'; ?>
+    </header>
+ 
     <section class="container my-5 mt-4">
         <h3 class="custom-title">Liste des Habitats</h3>
         <a class="btn btn-outline-success" href="formCreateHabitats.php" role="button">Ajouter Habitat</a>
@@ -45,7 +79,6 @@ if (!$result){
                 <tr>
                     <!-- Colonne principale pour Habitats -->
                     <th colspan="14" class="centered-header">Habitats</th>
-                   
                 </tr>
                 <tr>
                     <!-- Sous-colonnes pour Animaux -->
@@ -75,39 +108,37 @@ if (!$result){
                     <th>Date repas pris</th>
                     <th>Heure repas pris</th>
                     <!-- Colonnes spécifiques pour Action -->
-                     <th>Action</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                // Lire liste habitats depuis la base de données
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    // Convertir les chemins d'images en liste d'éléments <img>
-                    $imgPaths = explode(',', $row['img']);
+                // Afficher la liste des habitats et leurs images
+                foreach ($habitats as $habitat) {
                     $imgTags = '';
-                    foreach ($imgPaths as $imgPath) {
-                        $imgTags .= "<img src='{$imgPath}' alt='Image'>";
+                    foreach ($habitat['images'] as $image) {
+                        $imgTags .= "<img src='data:image/jpeg;base64," . base64_encode($image) . "' alt='Image'>";
                     }
 
                     echo "<tr>
-                        <td>{$row['id_habitat']}</td>
+                        <td>{$habitat['id_habitat']}</td>
                         <td class='img-column'>{$imgTags}</td>
-                        <td>{$row['habitat']}</td>
-                        <td>{$row['description_habitat']}</td>
-                        <td>{$row['prenom_animal']}</td>
-                        <td>{$row['race']}</td>
+                        <td>{$habitat['habitat']}</td>
+                        <td>{$habitat['description_habitat']}</td>
+                        <td>{$habitat['prenom_animal']}</td>
+                        <td>{$habitat['race']}</td>
 
-                        <td>{$row['etat_sante']}</td>
-                        <td>{$row['detail_sante']}</td>
-                        <td>{$row['date_visite']}</td>
+                        <td>{$habitat['etat_sante']}</td>
+                        <td>{$habitat['detail_sante']}</td>
+                        <td>{$habitat['date_visite']}</td>
 
-                        <td>{$row['nourriture']}</td>
-                        <td>{$row['grammage']}</td>
-                        <td>{$row['date_repas_pris']}</td>
-                        <td>{$row['heure_repas_pris']}</td>
+                        <td>{$habitat['nourriture']}</td>
+                        <td>{$habitat['grammage']}</td>
+                        <td>{$habitat['date_repas_pris']}</td>
+                        <td>{$habitat['heure_repas_pris']}</td>
                         <td>
-                            <a href='formUpdateAnimauxAdmin.php?id_habitat={$row['id_habitat']}' class='link-warning'><i class='fas fa-pencil-square'></i></a>&nbsp
-                            <a href='updateStatutHabitats.php?id_habitat={$row['id_habitat']}' class='link-danger'><i class='fas fa-trash'></i></a>
+                            <a href='formUpdateAnimauxAdmin.php?id_habitat={$habitat['id_habitat']}' class='link-warning'><i class='fas fa-pencil-square'></i></a>&nbsp
+                            <a href='updateStatutHabitats.php?id_habitat={$habitat['id_habitat']}' class='link-danger'><i class='fas fa-trash'></i></a>
                         </td>
                     </tr>";
                 }
@@ -117,10 +148,13 @@ if (!$result){
     </section>
 
     <!-- Bootstrap js link --> 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
     <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/locale/bootstrap-table-fr-FR.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 
 </body>
+    <?php include_once '../footer.php'; ?>
 </html>
+
